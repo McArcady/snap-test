@@ -1,0 +1,22 @@
+name: snap-test
+base: core18
+version: 0.1
+summary: Snap Test
+description: A simple test
+grade: stable
+confinement: devmode
+apps:
+  snap-test:
+    command: /opt/snap-test/hello.sh
+parts:
+  snap-test:
+    build-packages: [rsync]
+    stage-packages: []
+    plugin: autotools
+    source: .
+    override-build: |
+      rsync -qa * /opt/snap/test
+architectures:
+  - build-on: amd64
+source-code: https://github.com/McArcady/snap-test
+license: Proprietary

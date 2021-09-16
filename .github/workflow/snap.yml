@@ -1,0 +1,20 @@
+name: Buid test snap package
+
+on: push
+
+jobs:
+  snapcraft:
+    runs-on: ubuntu-18.04
+    steps:
+      
+    - name: Check out Git repository
+      uses: actions/checkout@v2
+        
+    - name: Install Snapcraft with LXD
+      uses: samuelmeuli/action-snapcraft@v1
+      with:
+        use_lxd: true
+
+    - name: Build snap
+      run: |
+        sg lxd -c 'snapcraft --debug --use-lxd'
